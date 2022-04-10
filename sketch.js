@@ -16,13 +16,14 @@ function setup() {
   createCanvas(1280, 960);
   x2 = width;
 
-  car = createSprite(200, 200);
+  car = createSprite(width/2, height/2, 50, 50);
   car.addAnimation('driving', 'images/car001.png', 'images/car002.png');
 }
 
 function draw() {
   background(220);
   roadMoving();
+
   drawSprites();
 }
 
