@@ -27,15 +27,14 @@ function draw() {
   roadMoving();
   car.position.y = mouseY
 
-   if(mouseY < 480) {
+   if(abs(movedY) < 0) {
      car.changeAnimation('turnL');
    }
-   else if(mouseY > 480) {
+   else if(abs(movedY) > 0) {
      car.changeAnimation('turnR');
    }
    else {
-     ghost.changeAnimation('driving');
-     ghost.velocity.x = 0;
+     car.changeAnimation('driving');
    }
 
 
