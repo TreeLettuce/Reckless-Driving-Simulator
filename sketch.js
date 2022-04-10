@@ -16,15 +16,30 @@ function setup() {
   createCanvas(1280, 960);
   x2 = width;
 
-  car = createSprite(width/2, height/2, 50, 50);
+  car = createSprite(width/2, height/2);
   car.addAnimation('driving', 'images/car001.png', 'images/car002.png');
+  car.addAnimation('turnL', 'images/carL001.png', 'images/carL002.png');
+  car.addAnimation('turnR', 'images/carR001.png', 'images/carR002.png');
 }
 
 function draw() {
   background(220);
   roadMoving();
+  car.position.y = mouseY
 
-  drawSprite(car);
+   if(mouseY < 480) {
+     car.changeAnimation('turnL');
+   }
+   else if(mouseY > 480) {
+     car.changeAnimation('turnR');
+   }
+   else {
+     ghost.changeAnimation('driving');
+     ghost.velocity.x = 0;
+   }
+
+
+  drawSprites();
 }
 
 function roadMoving() {
