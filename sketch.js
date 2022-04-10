@@ -24,7 +24,7 @@ function draw() {
   background(220);
   roadMoving();
 
-  drawSprites();
+  drawSprite(car);
 }
 
 function roadMoving() {
