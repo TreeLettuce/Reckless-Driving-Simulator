@@ -25,18 +25,17 @@ function setup() {
 function draw() {
   background(220);
   roadMoving();
-  car.position.y = mouseY
 
-   if(abs(movedY) < 0) {
-     car.changeAnimation('turnL');
-   }
-   else if(abs(movedY) > 0) {
-     car.changeAnimation('turnR');
-   }
-   else {
-     car.changeAnimation('driving');
-   }
-
+  if(keyDown('w')) {
+  car.position.y = car.position.y - 8;
+    car.changeAnimation('turnL');
+} else if(keyDown('s')){
+    car.position.y = car.position.y + 8;
+      car.changeAnimation('turnR');
+}
+  else {
+    car.changeAnimation('driving')
+  }
 
   drawSprites();
 }
