@@ -27,10 +27,10 @@ function draw() {
   roadMoving();
 
   if(keyDown('w')) {
-  car.position.y = car.position.y - 8;
+  car.position.y = car.position.y - 8.5;
     car.changeAnimation('turnL');
 } else if(keyDown('s')){
-    car.position.y = car.position.y + 8;
+    car.position.y = car.position.y + 8.5;
       car.changeAnimation('turnR');
 }
   else {
