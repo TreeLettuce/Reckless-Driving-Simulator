@@ -1,8 +1,10 @@
 var car;
 var movingRoad;
-var x1 = 0
+var wallTop;
+var wallBottom;
+var x1 = 0;
 var x2;
-var scrollSpeed = 12
+var scrollSpeed = 12;
 
 function preload() {
   mytupi = loadFont('font/mytupiBOLD.ttf');
@@ -19,6 +21,17 @@ function setup() {
   car.addAnimation('driving', 'images/car001.png', 'images/car002.png');
   car.addAnimation('turnL', 'images/carL001.png', 'images/carL002.png');
   car.addAnimation('turnR', 'images/carR001.png', 'images/carR002.png');
+  car.setCollider('rectangle', -513, -5, 225, 100);
+
+//invis top wall sprite
+  wallTop = createSprite(0, 0, 1280, 70);
+  wallTop.addAnimation('normal', 'images/inviswall01.png');
+  wallTop.setCollider('rectangle', 640, 35, 1280, 70);
+
+//invis bottom wall sprite
+  wallBottom = createSprite(0, 0, 1280, 70);
+  wallBottom.addAnimation('normal', 'images/inviswall02.png');
+  wallBottom.setCollider('rectangle', 640, 925, 1280, 70);
 }
 
 function draw() {
@@ -38,6 +51,10 @@ function draw() {
 
 //draws all sprites
   drawSprites();
+
+  car.debug = mouseIsPressed;
+  wallTop.debug = mouseIsPressed;
+  wallBottom.debug = mouseIsPressed;
 }
 
 //infinitely scrolling background
