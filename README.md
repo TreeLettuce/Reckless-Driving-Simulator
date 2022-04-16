@@ -16,5 +16,5 @@ Players will move and down a 5-lane freeway using keyboard controls to dodge onc
 7. Test game functionality and ensure game plays as intended
 8. Polish visuals
 9. Finish
-
+<br>
 ***ERROR IN GITHUB AND GITHUB DESKTOP CREATED ISSUES WITH PUSHING AND PULLING UPDATES TO REPOSITORY. EARLIEST VERSIONS LOST.***
