@@ -5,7 +5,7 @@
 **Gameplay Overview:** <br>
 Players will move and down a 5-lane freeway using keyboard controls to dodge oncoming traffic that spawn randomly. "W" will move the player up into the left lanes, and "S" will move the player down into the right lanes. The game will endlessly continue until the player dies, either by colliding with another vehicle or by veering too far off the lane restrictions. A simple score counter goes up linearly for as long as the player stays alive. If the player dies, they have the option to return to the main menu, or retry.
 
-Game functions of JavaScript via p5.js and using the p5.play library.
+Game functions off JavaScript and was created using p5.js and the p5.play library.
 
 **Timeline:**
 1. Create bare game, with input controls working
