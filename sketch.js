@@ -16,7 +16,7 @@ function preload() {
 
 function setup() {
   createCanvas(1280, 960);
-  frameRate(80);
+  frameRate(144);
   x2 = width;
 
 //car sprite
@@ -106,6 +106,12 @@ function gameStage() {
 function gameOver() {
   background(200);
   image(ggscreen, 0, 0, 0, 0)
+  textAlign(CENTER);
+  textSize(55);
+  textFont(mytupi);
+  stroke(0);
+  strokeWeight(6);
+  fill(255, 10, 10);
 }
 
 //infinitely scrolling background
