@@ -5,10 +5,12 @@ var wallBottom;
 var x1 = 0;
 var x2;
 var scrollSpeed = 12;
+let gameState = 'title';
 
 function preload() {
   mytupi = loadFont('font/mytupiBOLD.ttf');
   menu = loadImage('images/menu.png');
+  ggscreen = loadImage('images/gg.png');
   movingRoad = loadImage('images/road.png')
 }
 
@@ -36,7 +38,44 @@ function setup() {
 }
 
 function draw() {
+  switch (gameState) {
+    case 'title':
+      titleScreen();
+      break;
+    case 'game':
+      gameStage();
+      break;
+    case 'gameover':
+      gameOver();
+      break;
+  }
+}
+
+function keyReleased() {
+  if (gameState === 'title' || gameState === 'gameover') {
+    if (key === 'x' || key === 'x' ) {
+      gameState = 'game';
+    }
+  } else if (gameState === 'gameover') {
+    if (key === 'x' || key === 'x' ) {
+      gameState = 'game'
+    }
+  }
+}
+
+function titleScreen() {
   background(220);
+  image(menu, 0, 0, 0, 0);
+  textAlign(CENTER);
+  textSize(55);
+  textFont(mytupi);
+  stroke(0);
+  strokeWeight(6);
+  fill(255, 255, 255);
+  text('PRESS "X" TO START GAME', width / 2, height / 2.35);
+}
+
+function gameStage() {
   roadMoving();
 
 //movement + turning animation
@@ -55,13 +94,18 @@ function draw() {
 
 //side barrier death
   if(car.overlap(wallTop))
-     die();
+    die();
   if(car.overlap(wallBottom))
     die();
 
   car.debug = mouseIsPressed;
   wallTop.debug = mouseIsPressed;
   wallBottom.debug = mouseIsPressed;
+}
+
+function gameOver() {
+  background(200);
+  image(ggscreen, 0, 0, 0, 0)
 }
 
 //infinitely scrolling background
@@ -78,4 +122,8 @@ function roadMoving() {
   if (x2 < -width) {
     x2 = width;
   }
+}
+
+function die() {
+  gameState = 'gameover'
 }
