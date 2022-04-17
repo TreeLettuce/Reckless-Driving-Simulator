@@ -55,10 +55,8 @@ function keyReleased() {
   if (gameState === 'title' || gameState === 'gameover') {
     if (key === 'x' || key === 'x' ) {
       gameState = 'game';
-    }
-  } else if (gameState === 'gameover') {
-    if (key === 'x' || key === 'x' ) {
-      gameState = 'game'
+    car.position.x = 680
+    car.position.y = 483
     }
   }
 }
@@ -77,6 +75,8 @@ function titleScreen() {
 
 function gameStage() {
   roadMoving();
+
+
 
 //movement + turning animation
   if (keyDown('w')) {
@@ -112,6 +112,7 @@ function gameOver() {
   stroke(0);
   strokeWeight(6);
   fill(255, 10, 10);
+  text('PRESS "X" TO RESTART', width / 2, height / 1.5);
 }
 
 //infinitely scrolling background
