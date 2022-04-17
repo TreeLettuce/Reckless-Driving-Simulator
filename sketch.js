@@ -14,6 +14,7 @@ function preload() {
 
 function setup() {
   createCanvas(1280, 960);
+  frameRate(80);
   x2 = width;
 
 //car sprite
@@ -51,6 +52,12 @@ function draw() {
 
 //draws all sprites
   drawSprites();
+
+//side barrier death
+  if(car.overlap(wallTop))
+     die();
+  if(car.overlap(wallBottom))
+    die();
 
   car.debug = mouseIsPressed;
   wallTop.debug = mouseIsPressed;
