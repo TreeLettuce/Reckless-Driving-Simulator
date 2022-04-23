@@ -2,12 +2,15 @@ var car;
 var movingRoad;
 var wallTop;
 var wallBottom;
+var traffic1;
+var trafficGroup;
 var x1 = 0;
 var x2;
 var scrollSpeed = 12;
 let gameState = 'title';
 
 function preload() {
+  traffic01 = loadImage('images/traffic01.png');
   mytupi = loadFont('font/mytupiBOLD.ttf');
   menu = loadImage('images/menu.png');
   ggscreen = loadImage('images/gg.png');
@@ -16,25 +19,28 @@ function preload() {
 
 function setup() {
   createCanvas(1280, 960);
-  frameRate(144);
+  frameRate(60);
   x2 = width;
 
-//car sprite
+  //car sprite
   car = createSprite(width / 2, height / 2);
   car.addAnimation('driving', 'images/car001.png', 'images/car002.png');
   car.addAnimation('turnL', 'images/carL001.png', 'images/carL002.png');
   car.addAnimation('turnR', 'images/carR001.png', 'images/carR002.png');
   car.setCollider('rectangle', -513, -5, 225, 100);
 
-//invis top wall sprite
+  //invis top wall sprite
   wallTop = createSprite(0, 0, 1280, 70);
   wallTop.addAnimation('normal', 'images/inviswall01.png');
   wallTop.setCollider('rectangle', 640, 35, 1280, 70);
 
-//invis bottom wall sprite
+  //invis bottom wall sprite
   wallBottom = createSprite(0, 0, 1280, 70);
   wallBottom.addAnimation('normal', 'images/inviswall02.png');
   wallBottom.setCollider('rectangle', 640, 925, 1280, 70);
+
+  trafficGroup = new Group();
+  score = 0
 }
 
 function draw() {
@@ -53,10 +59,10 @@ function draw() {
 
 function keyReleased() {
   if (gameState === 'title' || gameState === 'gameover') {
-    if (key === 'x' || key === 'x' ) {
+    if (key === 'x' || key === 'x') {
       gameState = 'game';
-    car.position.x = 680
-    car.position.y = 483
+      car.position.x = 680
+      car.position.y = 483
     }
   }
 }
@@ -76,9 +82,7 @@ function titleScreen() {
 function gameStage() {
   roadMoving();
 
-
-
-//movement + turning animation
+  //movement + turning animation
   if (keyDown('w')) {
     car.position.y = car.position.y - 8.5;
     car.changeAnimation('turnL');
@@ -89,18 +93,39 @@ function gameStage() {
     car.changeAnimation('driving')
   }
 
-//draws all sprites
+  //draws all sprites
   drawSprites();
 
-//side barrier death
-  if(car.overlap(wallTop))
+  //side barrier death
+  if (car.overlap(wallTop))
     die();
-  if(car.overlap(wallBottom))
+  if (car.overlap(wallBottom))
     die();
+
+  for (var i = 0; i < trafficGroup.length; i++)
+    if (trafficGroup[i].position.x < car.position.x - width / 0.5) {
+      trafficGroup[i].remove()
+    }
+  if (car.overlap(trafficGroup)) {
+    die();
+  }
+  trafficSpawn();
 
   car.debug = mouseIsPressed;
   wallTop.debug = mouseIsPressed;
   wallBottom.debug = mouseIsPressed;
+
+}
+
+function trafficSpawn() {
+  if (frameCount % 500 === 55) {
+    var traffic1 = createSprite(1500, 170, 100, 100);
+    traffic1.setCollider('rectangle', 0, 0, 220, 90);
+    traffic1.addImage(traffic01);
+    traffic1.lifetime = 200;
+    trafficGroup.add(traffic1);
+    traffic1.velocity.x = -(10 + 3 * score / 100);
+  }
 }
 
 function gameOver() {
