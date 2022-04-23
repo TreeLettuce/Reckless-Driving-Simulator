@@ -10,11 +10,17 @@ var scrollSpeed = 12;
 let gameState = 'title';
 
 function preload() {
-  traffic01 = loadImage('images/traffic01.png');
   mytupi = loadFont('font/mytupiBOLD.ttf');
   menu = loadImage('images/menu.png');
   ggscreen = loadImage('images/gg.png');
   movingRoad = loadImage('images/road.png')
+  traffic01 = loadImage('images/traffic01.png');
+  traffic02 = loadImage('images/traffic02.png');
+  traffic03 = loadImage('images/traffic03.png');
+  traffic04 = loadImage('images/traffic04.png');
+  traffic05 = loadImage('images/traffic05.png');
+  traffic06 = loadImage('images/traffic06.png');
+  traffic07 = loadImage('images/traffic07.png');
 }
 
 function setup() {
@@ -84,10 +90,10 @@ function gameStage() {
 
   //movement + turning animation
   if (keyDown('w')) {
-    car.position.y = car.position.y - 8.5;
+    car.position.y = car.position.y - 10;
     car.changeAnimation('turnL');
   } else if (keyDown('s')) {
-    car.position.y = car.position.y + 8.5;
+    car.position.y = car.position.y + 10;
     car.changeAnimation('turnR');
   } else {
     car.changeAnimation('driving')
@@ -111,6 +117,13 @@ function gameStage() {
   }
   trafficSpawn();
 
+  push();
+  textFont(mytupi);
+  textSize(20);
+  fill(255, 255, 255);
+  text("SCORE: " + score, 30, 50);
+  pop();
+
   car.debug = mouseIsPressed;
   wallTop.debug = mouseIsPressed;
   wallBottom.debug = mouseIsPressed;
@@ -118,14 +131,70 @@ function gameStage() {
 }
 
 function trafficSpawn() {
-  if (frameCount % 500 === 55) {
-    var traffic1 = createSprite(1500, 170, 100, 100);
+  //traffic1
+  if (frameCount % 600 === 60) {
+    var traffic1 = createSprite(1500, 170, 0, 0);
     traffic1.setCollider('rectangle', 0, 0, 220, 90);
     traffic1.addImage(traffic01);
     traffic1.lifetime = 200;
     trafficGroup.add(traffic1);
     traffic1.velocity.x = -(10 + 3 * score / 100);
-  }
+}
+  //traffic2
+  if (frameCount % 1000 === 120) {
+    var traffic2 = createSprite(1900, 325, 0, 0)
+    traffic2.setCollider('rectangle', 0, -1, 215, 90);
+    traffic2.addImage(traffic02);
+    traffic2.lifetime = 200;
+    trafficGroup.add(traffic2);
+    traffic2.velocity.x = -(10 + 3 * score / 100);
+}
+  //traffic3
+  if (frameCount % 500 === 1000) {
+    var traffic3 = createSprite(1500, 785, 0, 0)
+    traffic3.setCollider('rectangle', 0, -1, 215, 90);
+    traffic3.addImage(traffic03);
+    traffic3.lifetime = 200;
+    trafficGroup.add(traffic3);
+    traffic3.velocity.x = -(10 + 3 * score / 100);
+}
+  //traffic4
+  if (frameCount % 500 === 90) {
+    var traffic4 = createSprite(1500, 630, 0, 0)
+    traffic4.setCollider('rectangle', 0, 0, 267, 125);
+    traffic4.addImage(traffic04);
+    traffic4.lifetime = 200;
+    trafficGroup.add(traffic4);
+    traffic4.velocity.x = -(10 + 3 * score / 100);
+}
+  //traffic5
+  if (frameCount % 400 === 30) {
+    var traffic5 = createSprite(1500, 630, 0, 0)
+    traffic5.setCollider('rectangle', 0, 0, 267, 125);
+    traffic5.addImage(traffic05);
+    traffic5.lifetime = 200;
+    trafficGroup.add(traffic5);
+    traffic5.velocity.x = -(10 + 4 * score / 100);
+}
+  //traffic6
+  if (frameCount % 1100 === 200) {
+    var traffic6 = createSprite(1500, 480, 0, 0)
+    traffic6.setCollider('rectangle', 0, 0, 267, 125);
+    traffic6.addImage(traffic06);
+    traffic6.lifetime = 200;
+    trafficGroup.add(traffic6);
+    traffic6.velocity.x = -(10 + 4 * score / 100);
+}
+  //traffic7
+  if (frameCount % 770 === 110) {
+    var traffic7 = createSprite(1400, 478, 0, 0)
+    traffic7.setCollider('rectangle', 0, 0, 325, 135);
+    traffic7.debug = mouseIsPressed;
+    traffic7.addImage(traffic07);
+    traffic7.lifetime = 200;
+    trafficGroup.add(traffic7);
+    traffic7.velocity.x = -(10 + 2 * score / 100);
+}
 }
 
 function gameOver() {
