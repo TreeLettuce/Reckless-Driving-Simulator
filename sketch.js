@@ -87,6 +87,7 @@ function titleScreen() {
 
 function gameStage() {
   roadMoving();
+  score = score + Math.round(getFrameRate() / 60);
 
   //movement + turning animation
   if (keyDown('w')) {
@@ -119,9 +120,11 @@ function gameStage() {
 
   push();
   textFont(mytupi);
-  textSize(20);
-  fill(255, 255, 255);
-  text("SCORE: " + score, 30, 50);
+  textSize(35);
+  strokeWeight(2);
+  stroke(0);
+  fill(255, 255, 0);
+  text("SCORE: " + score, 30, 55);
   pop();
 
   car.debug = mouseIsPressed;
@@ -138,7 +141,7 @@ function trafficSpawn() {
     traffic1.addImage(traffic01);
     traffic1.lifetime = 200;
     trafficGroup.add(traffic1);
-    traffic1.velocity.x = -(10 + 3 * score / 100);
+    traffic1.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic2
   if (frameCount % 1000 === 120) {
@@ -147,7 +150,7 @@ function trafficSpawn() {
     traffic2.addImage(traffic02);
     traffic2.lifetime = 200;
     trafficGroup.add(traffic2);
-    traffic2.velocity.x = -(10 + 3 * score / 100);
+    traffic2.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic3
   if (frameCount % 500 === 1000) {
@@ -156,7 +159,7 @@ function trafficSpawn() {
     traffic3.addImage(traffic03);
     traffic3.lifetime = 200;
     trafficGroup.add(traffic3);
-    traffic3.velocity.x = -(10 + 3 * score / 100);
+    traffic3.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic4
   if (frameCount % 500 === 90) {
@@ -165,7 +168,7 @@ function trafficSpawn() {
     traffic4.addImage(traffic04);
     traffic4.lifetime = 200;
     trafficGroup.add(traffic4);
-    traffic4.velocity.x = -(10 + 3 * score / 100);
+    traffic4.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic5
   if (frameCount % 400 === 30) {
@@ -174,7 +177,7 @@ function trafficSpawn() {
     traffic5.addImage(traffic05);
     traffic5.lifetime = 200;
     trafficGroup.add(traffic5);
-    traffic5.velocity.x = -(10 + 4 * score / 100);
+    traffic5.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic6
   if (frameCount % 1100 === 200) {
@@ -183,7 +186,7 @@ function trafficSpawn() {
     traffic6.addImage(traffic06);
     traffic6.lifetime = 200;
     trafficGroup.add(traffic6);
-    traffic6.velocity.x = -(10 + 4 * score / 100);
+    traffic6.velocity.x = -(10 + 0.7 * score / 100);
 }
   //traffic7
   if (frameCount % 770 === 110) {
@@ -193,7 +196,17 @@ function trafficSpawn() {
     traffic7.addImage(traffic07);
     traffic7.lifetime = 200;
     trafficGroup.add(traffic7);
-    traffic7.velocity.x = -(10 + 2 * score / 100);
+    traffic7.velocity.x = -(10 + 0.7 * score / 100);
+}
+//traffic8
+  if (frameCount % 900 === 380) {
+    var traffic8 = createSprite(1400, 478, 0, 0)
+    traffic8.setCollider('rectangle', 0, 0, 325, 135);
+    traffic8.debug = mouseIsPressed;
+    traffic8.addImage(traffic03);
+    traffic8.lifetime = 200;
+    trafficGroup.add(traffic8);
+    traffic8.velocity.x = -(10 + 0.7 * score / 100);
 }
 }
 
