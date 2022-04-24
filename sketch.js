@@ -65,7 +65,7 @@ function draw() {
 
 function keyReleased() {
   if (gameState === 'title' || gameState === 'gameover') {
-    if (key === 'x' || key === 'x') {
+    if (key === 'x' || key === 'X') {
       gameState = 'game';
       car.position.x = 680;
       car.position.y = 483;
@@ -200,7 +200,7 @@ function trafficSpawn() {
     traffic7.velocity.x = -(10 + 0.3 * score / 100);
 }
 //traffic8
-  if (frameCount % 1500 === 980) {
+  if (frameCount % 1700 === 1000) {
     var traffic8 = createSprite(1400, 478, 0, 0)
     traffic8.setCollider('rectangle', 0, 0, 325, 135);
     traffic8.debug = mouseIsPressed;
@@ -220,26 +220,28 @@ function trafficSpawn() {
     traffic9.velocity.x = -(10 + 0.4 * score / 100);
 }
   //traffic10
-  if (frameCount % 1100 === 270) {
+  if (frameCount % 1000 === 250) {
     var traffic10 = createSprite(1500, 325, 0, 0)
     traffic10.setCollider('rectangle', 0, 0, 267, 125);
     traffic10.addImage(traffic06);
     traffic10.lifetime = 200;
     trafficGroup.add(traffic10);
-    traffic10.velocity.x = -(10 + 0.6 * score / 100);
+    traffic10.velocity.x = -(10 + 0.5 * score / 100);
 }
 }
 
 function gameOver() {
   background(200);
-  image(ggscreen, 0, 0, 0, 0)
+  image(ggscreen, 0, 0, 0, 0);
+  trafficGroup.removeSprites();
   textAlign(CENTER);
   textSize(55);
   textFont(mytupi);
   stroke(0);
   strokeWeight(6);
   fill(255, 10, 10);
-  text('PRESS "X" TO RESTART', width / 2, height / 1.5);
+  text("YOUR SCORE WAS " + score, width / 2, height / 1.5);
+  text('PRESS "X" TO RESTART', width / 2, height / 1.25);
 }
 
 //infinitely scrolling background
