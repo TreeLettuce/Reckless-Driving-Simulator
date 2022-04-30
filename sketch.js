@@ -6,7 +6,7 @@ var traffic1;
 var trafficGroup;
 var x1 = 0;
 var x2;
-var scrollSpeed = 25;
+var scrollSpeed = 30;
 let gameState = 'title';
 
 function preload() {
