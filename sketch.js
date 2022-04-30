@@ -181,7 +181,7 @@ function trafficSpawn() {
     traffic5.velocity.x = -(10 + 0.45 * score / 100);
 }
   //traffic6
-  if (frameCount % 1000 === 180) {
+  if (frameCount % 1000 === 150) {
     var traffic6 = createSprite(1500, 480, 0, 0)
     traffic6.setCollider('rectangle', 0, 0, 267, 125);
     traffic6.addImage(traffic06);
